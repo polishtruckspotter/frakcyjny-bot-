@@ -16,7 +16,7 @@ Nie udostępniaj tokenu i nie dodawaj pliku `.env` do repozytorium.
 1. Wgraj pliki projektu na serwer. Nie musisz wysyłać folderu `node_modules`.
 2. Wybierz Node.js 20 lub nowszy.
 3. W panelu Wispbyte ustaw zmienną środowiskową `DISCORD_TOKEN` na token bota z Discord Developer Portal.
-4. Ustaw komendę startową `npm start`. Jeśli panel wymaga osobnego polecenia instalacji zależności, użyj `npm install`.
+4. Ustaw zmienną `JS_FILE` na `index.js`. Plik startowy w katalogu głównym przekazuje uruchomienie do `src/index.js`. Jeśli panel pozwala ustawić własną komendę startową, możesz też użyć `npm start`.
 5. Uruchom serwer. Po zalogowaniu bot zarejestruje polecenia na serwerach KGP i BOA, a następnie wyświetli swój status w konsoli.
 
 Bot nie potrzebuje otwartego portu. W Discord Developer Portal nadaj mu uprawnienia do wyświetlania kanałów, wysyłania wiadomości, odczytywania historii oraz zarządzania kanałami. Przy zapraszaniu aplikacji uwzględnij zakresy `bot` i `applications.commands`.
