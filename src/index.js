@@ -10,10 +10,10 @@ const {
 } = require('./recruitment');
 const { guilds } = require('./guilds');
 
-const token = process.env.DISCORD_TOKEN;
+const token = process.env.DISCORD_TOKEN || process.env.DISCORDTOKEN;
 
 if (!token) {
-  throw new Error('Brakuje DISCORD_TOKEN. Ustaw go w zmiennych środowiskowych.');
+  throw new Error('Brakuje DISCORD_TOKEN (lub DISCORDTOKEN). Ustaw token bota w zmiennych środowiskowych.');
 }
 
 const client = new Client({
