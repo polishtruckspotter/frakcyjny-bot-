@@ -8,7 +8,6 @@ const {
   initializeRecruitmentStore,
   retryUnpublishedApplications,
 } = require('./recruitment');
-const { guilds } = require('./guilds');
 
 const token = process.env.DISCORD_TOKEN || process.env.DISCORDTOKEN;
 
@@ -22,13 +21,19 @@ const client = new Client({
 });
 
 client.once(Events.ClientReady, async (readyClient) => {
-  for (const target of guilds) {
+  const availableGuilds = [...readyClient.guilds.cache.values()];
+
+  if (availableGuilds.length === 0) {
+    console.error('Bot nie widzi żadnego serwera. Sprawdź, czy został dodany do serwera z zakresem bot.');
+  }
+
+  for (const guild of availableGuilds) {
+    console.log(`Bot widzi serwer ${guild.name} (${guild.id}).`);
     try {
-      const guild = await readyClient.guilds.fetch(target.id);
       await guild.commands.set(ticketCommands);
-      console.log(`Komendy zarejestrowano na serwerze ${target.name} (${target.id}).`);
+      console.log(`Komendy zarejestrowano na serwerze ${guild.name} (${guild.id}).`);
     } catch (error) {
-      console.error(`Nie udało się zarejestrować komend na serwerze ${target.name} (${target.id}). Sprawdź, czy bot jest na serwerze i ma dostęp do komend aplikacji.`, error);
+      console.error(`Nie udało się zarejestrować komend na serwerze ${guild.name} (${guild.id}).`, error);
     }
   }
 
