@@ -22,24 +22,25 @@ const client = new Client({
 });
 
 client.once(Events.ClientReady, async (readyClient) => {
-  try {
-    await readyClient.application.commands.set([]);
-    for (const target of guilds) {
+  for (const target of guilds) {
+    try {
       const guild = await readyClient.guilds.fetch(target.id);
       await guild.commands.set(ticketCommands);
       console.log(`Komendy zarejestrowano na serwerze ${target.name} (${target.id}).`);
+    } catch (error) {
+      console.error(`Nie udało się zarejestrować komend na serwerze ${target.name} (${target.id}). Sprawdź, czy bot jest na serwerze i ma dostęp do komend aplikacji.`, error);
     }
-    await retryUnpublishedApplications(readyClient);
+  }
 
+  try {
+    await retryUnpublishedApplications(readyClient);
     readyClient.user.setPresence({
       activities: [{ name: 'Frakcyjny Bot Poznań RP' }],
       status: 'online',
     });
     console.log(`Frakcyjny Bot Poznań RP działa jako ${readyClient.user.tag}`);
   } catch (error) {
-    console.error('Nie udało się zarejestrować komend Discorda:', error);
-    readyClient.destroy();
-    process.exitCode = 1;
+    console.error('Bot zalogował się, ale nie udało się dokończyć konfiguracji po uruchomieniu:', error);
   }
 });
 

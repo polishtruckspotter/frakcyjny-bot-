@@ -16,12 +16,12 @@ Nie udostępniaj tokenu i nie dodawaj pliku `.env` do repozytorium.
 1. Wgraj pliki projektu na serwer. Nie musisz wysyłać folderu `node_modules`.
 2. Wybierz Node.js 20 lub nowszy.
 3. W panelu Wispbyte ustaw zmienną środowiskową `DISCORD_TOKEN` na token bota z Discord Developer Portal. Bot akceptuje też nazwę `DISCORDTOKEN`.
-4. Ustaw zmienną `JS_FILE` na `index.js`. Plik startowy w katalogu głównym przekazuje uruchomienie do `src/index.js`. Jeśli panel pozwala ustawić własną komendę startową, możesz też użyć `npm start`.
+4. Ustaw plik startowy na `index.js` (katalog główny projektu) albo komendę startową na `npm start`. Nie ustawiaj `src/index.js`, jeśli panel oczekuje pliku z katalogu głównego.
 5. Uruchom serwer. Po zalogowaniu bot zarejestruje polecenia na serwerach KGP i BOA, a następnie wyświetli swój status w konsoli.
 
-Bot nie potrzebuje otwartego portu. W Discord Developer Portal nadaj mu uprawnienia do wyświetlania kanałów, wysyłania wiadomości, odczytywania historii oraz zarządzania kanałami. Przy zapraszaniu aplikacji uwzględnij zakresy `bot` i `applications.commands`.
+Bot nie potrzebuje otwartego portu. W Discord Developer Portal nadaj mu uprawnienia do wyświetlania kanałów, wysyłania wiadomości, odczytywania historii oraz zarządzania kanałami. Przy zapraszaniu aplikacji uwzględnij zakresy `bot` i `applications.commands`. Upewnij się też, że wgrałeś `index.js`, `package.json`, `package-lock.json` i cały folder `src` bezpośrednio do katalogu serwera, a w panelu wybrałeś Node.js 20 lub nowszy.
 
-Bot rejestruje polecenia tylko na dwóch wskazanych serwerach: KGP (`1562984483190345892`) i BOA (`1557401688158117958`). Musi być zaproszony na oba; jeśli któregoś brakuje, rejestracja poleceń zgłosi błąd w konsoli.
+Bot rejestruje polecenia tylko na dwóch wskazanych serwerach: KGP (`1562984483190345892`) i BOA (`1557401688158117958`). Jeśli któregoś brakuje, komendy dla niego nie zostaną zarejestrowane; bot pozostanie uruchomiony.
 
 ## Konfiguracja zgłoszeń
 
